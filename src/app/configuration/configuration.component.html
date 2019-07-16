@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="sub-titulo">
+        <h3>Configurações</h3>
+    </div>
+    <hr class="mb-4">
+    <form (ngSubmit)="onSave()">
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label for="url-input">Url Azure DevOps</label>
+                    <input class="form-control" type="text" [(ngModel)]="configurationModel.url" name="url">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label for="projectName-input">Nome do projeto</label>
+                    <input class="form-control" type="text" [(ngModel)]="configurationModel.projectName" name="projectName">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="form-group">
+                    <label for="token-input">Token</label>
+                    <input class="form-control" type="text" [(ngModel)]="configurationModel.token" name="token">
+                </div>
+            </div>
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-primary" type="submit">Salvar</button>
+    </form>
+    <br>
+    <ngb-alert *ngIf="saved" class="alert alert-success" role="alert">
+        Configurações salva com sucesso!
+    </ngb-alert>
+    <ngb-alert *ngIf="error" class="    alert alert-danger alert-dismissible" role="alert">
+        Erro ao salvar as configurações!
+    </ngb-alert>
+</div>

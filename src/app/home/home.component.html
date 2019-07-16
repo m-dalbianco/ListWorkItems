@@ -1,0 +1,38 @@
+<div class="container">
+    <div class=titulo>
+        <h1>Lista de <em>Work items</em></h1>
+    </div>
+    <hr class="mb-4">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th> Título </th>
+                <th>Tipo</th>
+                <th (click)="setOrder('createdDate')" class="column-date">
+                    Data de criação <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                </th>
+            </tr>
+            <tr class="filtros">
+                <th></th>
+                <th></th>
+                <th>
+                    <input type="text" [(ngModel)]="workItemFilter.workItemType">
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                *ngFor="let workItem of workItems | filterBy: workItemFilter | orderBy: order : reverse : 'case-insensitive'">
+                <td>{{ workItem.id }}</td>
+                <td>{{ workItem.title }}</td>
+                <td>{{ workItem.workItemType }}</td>
+                <td>{{ workItem.createdDate | date:"dd/MM/yyyy HH:mm:ss" }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ngb-alert *ngIf="(workItems | filterBy: workItemFilter).length === 0" class="alert alert-warning" role="alert">
+            <strong>Atenção!</strong> Não foi encontrado nenhum elemento. Verique se as configurações estão corretas <!---->
+    </ngb-alert>
+</div>
